@@ -9,6 +9,7 @@ import {
     AppRegistry,
     StyleSheet,
     View,
+    ScrollView,
 } from 'react-native';
 import ArtistBox from './ArtistBox';
 
@@ -22,14 +23,20 @@ export default class PlatziMusic extends Component {
         };
 
         return (
-            <View style={styles.container}>
-                <ArtistBox artist={artist} />
-                <ArtistBox artist={artist} />
-                <ArtistBox artist={artist} />
-                <ArtistBox artist={artist} />
-                <ArtistBox artist={artist} />
-                <ArtistBox artist={artist} />
-            </View>
+            /*Forma 1: Resolver el problema del scroll de los items usando ScrollView.
+            Es la forma mas facil pero no optima para nuestro caso ya que rederiza todos
+            los items incluso aunque no se alcancen a mostrar en la pantalla.
+            El ScrollView, es un buen componente cuando hablamos de pocos items o 
+            contenido estatico como por ejemplo texto largo o un formulario,
+            ya que dibuja todos los elementos al mismo tiempo en la pantalla.
+            */
+            <ScrollView style={styles.container}>
+                {
+                    Array(500).fill(artist).map((artist) => {
+                        return <ArtistBox artist={artist} />
+                    })
+                }
+            </ScrollView>
         );
     }
 }
