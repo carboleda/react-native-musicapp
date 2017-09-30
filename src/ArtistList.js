@@ -22,7 +22,8 @@ export default class ArtistsList extends Component {
         return (
             <FlatList
                 data={artists}
-                renderItem={({item}) => <ArtistBox artist={item} />} />
+                renderItem={({item}) => <ArtistBox artist={item} />}
+                />
         );
     }
 }
